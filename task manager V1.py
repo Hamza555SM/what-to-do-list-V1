@@ -3,7 +3,7 @@
 # view tasks 
 # quit
 
-massege = """ 1-add taks to a list 
+massege = """ 1-add task to the list 
  2-mark task as complete
  3-view tasks 
  4-quit"""
@@ -15,7 +15,7 @@ def add_task():
     task = input("what is the task:\n")
 
     # defin task info 
-    task_info = {"task": task,'statuse':False}
+    task_info = {"task": task,'status':False}
 
     # add task to the list 
     tasks.append(task_info)
@@ -25,7 +25,7 @@ def add_task():
 # ===============================================================
 def mark_task_complete():
     # get list of tasks didnt complete
-    incompleted_tasks = [task for task in tasks if task['statuse'] == False]
+    incompleted_tasks = [task for task in tasks if task['status'] == False]
     if len(incompleted_tasks) ==0 :
          print('no tasks to mark as complete')
          return
@@ -37,18 +37,18 @@ def mark_task_complete():
     # get the task from the user
     task_num = int( input('\nput the number of tasks you did it, (press 0 to skip)\n'))
     if task_num != 0 and task_num-1 <= len(tasks):
-       incompleted_tasks[task_num - 1]['statuse']=True
+       incompleted_tasks[task_num - 1]['status']=True
     elif task_num-1 > len(tasks):
-         print('Error mother fucker ')
+         print('Error please write correct num')
     return
 # ===============================================================
 def view_tasks():
-    # see if ther is a tasks,not : print no tasks to view
+    # see if there is a tasks,not : print no tasks to view
      if not tasks:
          print('no tasks to view')
          return
      for i, task in enumerate(tasks):
-        if task["statuse"]:
+        if task["status"]:
             completed = '✔'
         else:
              completed = '❌'
@@ -57,7 +57,7 @@ def view_tasks():
 def body_pro():
    while True:
       print(massege)
-      choice = input('inter your choice:\n')
+      choice = input('Enter your choice:\n')
       if choice == "1":
         add_task()
       elif choice == '2':
@@ -70,4 +70,3 @@ def body_pro():
           print('sorry but you write wrong => (you must chose the number of the choice)')
 # ===============================================================
 body_pro()
-
